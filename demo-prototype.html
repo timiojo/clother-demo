@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clother — Bespoke Formalwear Demo</title>
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#4B1F2E">
+<link rel="icon" type="image/png" href="./icon-192.png">
+<style>
+:root{--paper:#F6F1E8;--card:#FDFBF7;--line:#E5DACA;--wine900:#3E1522;--wine:#4B1F2E;
+--wine500:#6E3445;--ink:#2B1D21;--muted:#97878A;--ok:#2E7D4F}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);
+font-family:-apple-system,BlinkMacSystemFont,Inter,"Segoe UI",sans-serif;line-height:1.55}
+.serif{font-family:"Playfair Display",Georgia,serif}
+.micro{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.top{position:sticky;top:0;background:var(--paper);border-bottom:1px solid var(--line);
+display:flex;align-items:center;gap:12px;padding:12px 16px;z-index:5}
+.top .logo{font-size:24px;color:var(--wine);cursor:pointer}
+.top .sp{flex:1}.demotag{font-size:10px;letter-spacing:.18em;border:1px solid var(--wine);
+color:var(--wine);border-radius:999px;padding:3px 10px;font-weight:700}
+.screen{display:none;max-width:640px;margin:0 auto;padding:20px 16px 90px}
+.screen.on{display:block}
+.hero{padding:26px 0 8px}.hero h1{font-size:34px;margin:8px 0;color:var(--wine900)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:12px 0}
+.card img{width:100%;height:160px;object-fit:cover;display:block}
+.card .p{padding:14px}.price{font-weight:800;color:var(--wine)}
+.btn{display:inline-block;border:0;border-radius:4px;padding:13px 20px;font-size:14px;
+font-weight:700;cursor:pointer;margin:6px 6px 0 0}
+.btn-p{background:var(--wine);color:var(--card)}.btn-s{background:none;color:var(--wine);
+border:1px solid var(--wine)}.btn-g{background:none;color:var(--muted)}
+label{display:block;margin:12px 0 4px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+color:var(--muted);font-weight:700}
+input,select,textarea{width:100%;border:1px solid var(--line);border-radius:4px;
+padding:12px;font-size:15px;background:#fff;color:var(--ink);font-family:inherit}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin:12px 0}
+.tab{border:1px solid var(--line);background:var(--card);border-radius:999px;
+padding:8px 14px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;white-space:nowrap}
+.tab.on{background:var(--wine);border-color:var(--wine);color:var(--card)}
+.pane{display:none}.pane.on{display:block}
+.msg{padding:10px 14px;border-radius:14px;margin:8px 0;font-size:14px;max-width:86%;
+background:#fff;border:1px solid var(--line)}
+.msg.me{background:var(--wine);color:var(--card);border-color:var(--wine);margin-left:auto}
+.qhead{background:var(--wine);color:var(--card);font-size:11px;letter-spacing:.12em;
+text-transform:uppercase;display:grid;grid-template-columns:1fr 40px 100px;
+padding:10px 14px;font-weight:700}
+.qrow{display:grid;grid-template-columns:1fr 40px 100px;padding:12px 14px;
+border-top:1px solid var(--line);font-size:14px;background:#fff}
+.qrow small{display:block;color:var(--muted);font-size:12px}
+.qrow .amt{text-align:right;font-weight:800;color:var(--wine900)}
+.qtot{background:var(--wine);color:var(--card);display:flex;justify-content:space-between;
+align-items:center;padding:14px 16px}.qtot .n{font-size:22px;font-weight:800}
+.slot{display:flex;justify-content:space-between;align-items:center;background:#fff;
+border:1px solid var(--line);border-radius:8px;padding:12px;margin:8px 0;font-size:14px}
+.slot.booked{opacity:.55}.pill{font-size:11px;font-weight:800;padding:4px 12px;border-radius:999px}
+.p-await{background:#F3E8C8;color:#7A5410}.p-prog{background:#E3EAFB;color:#2B4C8A}
+.p-appr{background:#EFE0E2;color:var(--wine)}.p-done{background:#DFF2E4;color:#1E6B3A}
+.steps{display:flex;margin:12px 0}.step{flex:1;text-align:center;font-size:10px;color:var(--muted)}
+.step .dot{width:24px;height:24px;border-radius:50%;background:#EDE4D6;margin:0 auto 4px;
+display:flex;align-items:center;justify-content:center;font-weight:800}
+.step.on .dot{background:var(--wine);color:var(--card)}.step.on{color:var(--wine)}
+.stars{font-size:30px;color:var(--wine);cursor:pointer;letter-spacing:4px}
+.navdots{text-align:center;padding:16px;font-size:12px;color:var(--muted)}
+.navdots b{color:var(--wine)}
+.policy{background:#F8F1E3;border:1px solid var(--line);border-radius:4px;padding:12px;font-size:13px}
+.paybox{background:var(--wine900);color:var(--card);border-radius:10px;padding:20px;text-align:center}
+footer{text-align:center;font-size:10px;letter-spacing:.2em;color:var(--muted);
+text-transform:uppercase;padding:26px}
+</style>
+</head>
+<body>
+<div class="top">
+  <span class="logo serif" onclick="go('home')">Clother</span>
+  <span class="sp"></span><span class="demotag">DEMO PROTOTYPE</span>
+</div>
+
+<!-- HOME -->
+<div class="screen on" id="s-home">
+  <div class="hero">
+    <div class="micro">Bespoke formalwear · Featuring Dej. by Ayodeji</div>
+    <h1 class="serif">Dresses and suits, made for your occasion.</h1>
+    <p>Commission a bespoke piece, book a consultation, and follow your project — all in one place.</p>
+    <button class="btn btn-p" onclick="go('services')">Browse services</button>
+    <button class="btn btn-s" onclick="go('request')">Start a request</button>
+  </div>
+  <div class="micro">Signature pieces</div>
+  <div class="card"><img alt="Champagne gold dress" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='300'%3E%3Crect fill='%234B1F2E' width='600' height='300'/%3E%3Ctext x='30' y='150' fill='%23F6F1E8' font-size='28' font-family='Georgia'%3EChampagne gold dress%3C/text%3E%3C/svg%3E">
+    <div class="p"><b class="serif">Champagne gold bespoke dress</b><div class="micro">Evening · Couture</div><span class="price serif">₦296,900</span></div></div>
+  <div class="card"><img alt="Tailored suit" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='300'%3E%3Crect fill='%232B1D21' width='600' height='300'/%3E%3Ctext x='30' y='150' fill='%23F6F1E8' font-size='28' font-family='Georgia'%3ETailored two-piece suit%3C/text%3E%3C/svg%3E">
+    <div class="p"><b class="serif">Tailored two-piece suit</b><div class="micro">Formal · Tailoring</div><span class="price serif">From ₦180,000</span></div></div>
+  <div class="card"><div class="p"><span style="color:var(--wine)">★★★★★</span><br><b class="serif">“Perfect fit, beautifully finished.”</b><div class="micro">Verified client · Lagos</div></div></div>
+  <div class="navdots">Demo path: <b>Services → Request → Project → Quote → Payment → Progress</b></div>
+</div>
+
+<!-- SERVICES -->
+<div class="screen" id="s-services">
+  <div class="micro">Services</div>
+  <h1 class="serif">What the atelier makes</h1>
+  <div class="card"><div class="p"><b class="serif">Evening &amp; cocktail dresses</b><p style="font-size:14px">Design, fabric sourcing, production and fittings.</p><span class="price serif">From ₦120,000</span><br><button class="btn btn-p" onclick="go('request')">Request this</button></div></div>
+  <div class="card"><div class="p"><b class="serif">Tailored suits</b><p style="font-size:14px">Cut, construction, two fittings and finishing.</p><span class="price serif">From ₦180,000</span><br><button class="btn btn-p" onclick="go('request')">Request this</button></div></div>
+  <div class="card"><div class="p"><b class="serif">Bridal formal</b><p style="font-size:14px">Gowns and bridal-party suiting, full service.</p><span class="price serif">From ₦296,900</span><br><button class="btn btn-p" onclick="go('request')">Request this</button></div></div>
+  <button class="btn btn-g" onclick="go('home')">← Back</button>
+</div>
+
+<!-- REQUEST -->
+<div class="screen" id="s-request">
+  <div class="micro">Outfit request</div>
+  <h1 class="serif">Tell us about your piece</h1>
+  <label>Garment type</label><select id="f-type"><option>Evening dress</option><option>Tailored suit</option><option>Cocktail dress</option><option>Bridal gown</option></select>
+  <label>Occasion</label><input id="f-occ" placeholder="e.g. December wedding, Lagos">
+  <label>Budget range</label><select id="f-bud"><option>₦100k – ₦200k</option><option>₦200k – ₦400k</option><option>₦400k+</option></select>
+  <label>Needed by</label><input id="f-date" type="date">
+  <label>Design notes</label><textarea id="f-notes" rows="3" placeholder="Colours, neckline, references…"></textarea>
+  <label>Reference images</label><input type="file" accept="image/*" multiple>
+  <button class="btn btn-p" onclick="submitRequest()">Send request</button>
+  <button class="btn btn-g" onclick="go('services')">← Back</button>
+</div>
+
+<!-- PROJECT -->
+<div class="screen" id="s-project">
+  <div class="micro">Your project · <span id="p-name">Evening dress</span></div>
+  <h1 class="serif">Project room</h1>
+  <div><span class="pill p-await" id="p-pill">Awaiting confirmation</span></div>
+  <div class="steps" id="p-steps">
+    <div class="step on"><div class="dot">1</div>Awaiting</div>
+    <div class="step"><div class="dot">2</div>In progress</div>
+    <div class="step"><div class="dot">3</div>Approval</div>
+    <div class="step"><div class="dot">4</div>Done</div>
+  </div>
+  <div class="tabs">
+    <div class="tab on" onclick="tab('chat',this)">Chat</div>
+    <div class="tab" onclick="tab('book',this)">Booking</div>
+    <div class="tab" onclick="tab('quote',this)">Quote</div>
+    <div class="tab" onclick="tab('prog',this)">Progress</div>
+  </div>
+
+  <div class="pane on" id="pane-chat">
+    <div id="chatlog">
+      <div class="msg"><b>Dej.:</b> Thank you — I love this brief! What neckline do you prefer?</div>
+    </div>
+    <div style="display:flex;gap:6px;margin-top:8px">
+      <input id="chat-in" placeholder="Write a message…" style="margin:0">
+      <button class="btn btn-p" style="margin:0" onclick="sendChat()">Send</button>
+    </div>
+  </div>
+
+  <div class="pane" id="pane-book">
+    <div class="micro">This week · Africa/Lagos</div>
+    <div class="slot"><span><b>Thu 16 Oct</b> · 10:00 · Online</span><button class="btn btn-s" style="margin:0;padding:8px 14px" onclick="book(this)">Book</button></div>
+    <div class="slot"><span><b>Fri 17 Oct</b> · 14:00 · In-person</span><button class="btn btn-s" style="margin:0;padding:8px 14px" onclick="book(this)">Book</button></div>
+    <div class="slot"><span><b>Sat 18 Oct</b> · 11:30 · Online</span><button class="btn btn-s" style="margin:0;padding:8px 14px" onclick="book(this)">Book</button></div>
+    <div id="book-note" class="micro" style="margin-top:8px"></div>
+  </div>
+
+  <div class="pane" id="pane-quote">
+    <div class="micro">Your bespoke order · v1 · expires in 5 days</div>
+    <div class="card" style="margin-top:8px">
+      <div class="qhead"><span>Description</span><span style="text-align:center">Qty</span><span style="text-align:right">Amount</span></div>
+      <div class="qrow"><span class="serif">Champagne gold bespoke couture dress<small>Design and production</small></span><span style="text-align:center">1</span><span class="amt serif">₦296,900</span></div>
+      <div class="qrow"><span class="serif">Green bespoke dress<small>Design and production</small></span><span style="text-align:center">1</span><span class="amt serif">₦120,000</span></div>
+      <div class="qtot"><span class="micro" style="color:#EFE0E2">Total</span><span class="n serif">₦416,900</span></div>
+    </div>
+    <div class="policy"><div class="micro">Included in your order</div>Bespoke design, production coordination and dress making. Custom pieces non-refundable once cut. Statutory rights unaffected.</div>
+    <div id="quote-btns"><button class="btn btn-p" onclick="acceptQuote()">Accept &amp; pay deposit ₦208,450</button>
+    <button class="btn btn-g" onclick="alert('Demo: consultant is notified of the decline.')">Decline</button></div>
+  </div>
+
+  <div class="pane" id="pane-prog">
+    <div class="card"><div class="p" id="prog-body">
+      <div class="micro">Status</div>
+      <p style="font-size:14px">Nothing to show yet — progress appears here after payment.</p>
+    </div></div>
+    <div class="card" id="rev-card" style="display:none"><div class="p">
+      <div class="micro">You received your piece 🎉 — leave a review</div>
+      <div class="stars" id="stars">★★★★★</div>
+      <button class="btn btn-p" onclick="finishReview()">Submit review</button>
+    </div></div>
+  </div>
+</div>
+
+<!-- PAYMENT -->
+<div class="screen" id="s-pay">
+  <div class="micro">Secure payment · Demo mode</div>
+  <h1 class="serif">Deposit ₦208,450</h1>
+  <div class="paybox">
+    <div class="micro" style="color:#EFE0E2">Flutterwave · test, no real charge</div>
+    <p class="serif" style="font-size:26px;margin:8px 0">₦208,450</p>
+    <p style="font-size:13px;opacity:.8">Dej. by Ayodeji · Champagne gold dress deposit</p>
+    <button class="btn" style="background:var(--card);color:var(--wine);width:100%" onclick="payNow()">Pay now (demo)</button>
+  </div>
+  <button class="btn btn-g" onclick="go('project')">← Back to quote</button>
+</div>
+
+<footer>Clother · Bespoke design · Thoughtfully made — Featuring Dej. by Ayodeji</footer>
+
+<script>
+function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));
+document.getElementById('s-'+id).classList.add('on');window.scrollTo(0,0)}
+function tab(id,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+el.classList.add('on');document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+document.getElementById('pane-'+id).classList.add('on')}
+function submitRequest(){var t=document.getElementById('f-type').value;
+document.getElementById('p-name').textContent=t;go('project');tab('chat',document.querySelectorAll('.tab')[0]);
+addMsg('them','Request received — I\u2019ll review your '+t+' brief and reply here shortly. Meanwhile, grab a consultation slot in the Booking tab?')}
+function addMsg(who,text){var d=document.createElement('div');d.className='msg'+(who==='me'?' me':'');
+d.innerHTML=(who==='me'?'':'<b>Dej.:</b> ')+text;document.getElementById('chatlog').appendChild(d)}
+function sendChat(){var i=document.getElementById('chat-in');if(!i.value.trim())return;
+addMsg('me',i.value);i.value='';setTimeout(function(){addMsg('them','Noted — I\u2019ll fold that into your quote (v2 if pricing changes).')},900)}
+function book(btn){document.querySelectorAll('#pane-book .slot').forEach(s=>{s.classList.remove('booked');
+s.querySelector('button').textContent='Book'});var row=btn.closest('.slot');row.classList.add('booked');
+btn.textContent='Booked ✓';document.getElementById('book-note').textContent='Confirmation + reminder sent by email (demo). Booking a consultation does not yet commission production.';
+setPill('p-prog','In progress',1)}
+function acceptQuote(){go('pay')}
+function payNow(){var b=document.querySelector('#s-pay button.btn');b.textContent='Processing…';
+setTimeout(function(){b.textContent='Paid ✓';setPill('p-appr','Awaiting approval',2);go('project');
+tab('prog',document.querySelectorAll('.tab')[3]);
+document.getElementById('prog-body').innerHTML='<div class="micro">Status · deposit paid</div><p style="font-size:14px">✂️ Fabric sourced · 📐 Measurements confirmed · 🪡 Production in progress. Photos land here.</p><button class="btn btn-s" onclick="completeDemo()">Simulate: piece ready ✓</button>'},1200)}
+function completeDemo(){setPill('p-done','Completed',3);
+document.getElementById('prog-body').innerHTML='<div class="micro">Status · completed</div><p class="serif" style="font-size:18px">Your piece is ready for collection 🎉</p>';
+document.getElementById('rev-card').style.display='block'}
+function finishReview(){document.getElementById('rev-card').innerHTML='<p class="serif">Thank you for trusting us with your occasion.</p><div class="micro">Review submitted · demo complete</div>'}
+function setPill(cls,text,step){var p=document.getElementById('p-pill');p.className='pill '+cls;p.textContent=text;
+var steps=document.querySelectorAll('#p-steps .step');steps.forEach(function(s,i){s.classList.toggle('on',i<=step)})}
+document.querySelectorAll('#stars').forEach(function(el){el.addEventListener('click',function(){
+el.textContent='★★★★★';alert('Demo: 5 stars recorded.')})});
+</script>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(function(){})}</script>
+</body></html>

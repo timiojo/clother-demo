@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clother — Bespoke Formalwear</title>
+<style>
+  :root{--paper:#F6F1E8;--card:#FDFBF7;--line:#E5DACA;--wine900:#3E1522;--wine:#4B1F2E;--wine500:#6E3445;--ink:#2B1D21;--muted:#97878A;--ok:#2E7D4F}
+  *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,Inter,"Segoe UI",sans-serif;line-height:1.55}
+  .serif{font-family:"Playfair Display",Georgia,"Times New Roman",serif}
+  .micro{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  header{border-bottom:1px solid var(--line);padding:20px 16px;background:var(--paper)}
+  header .wrap{max-width:960px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+  .logo{font-size:34px;color:var(--wine);text-decoration:none;font-weight:600}
+  nav{display:flex;gap:14px;font-size:14px;font-weight:600}
+  nav a{color:var(--ink);text-decoration:none}
+  nav a:hover{color:var(--wine-700)}
+  .btn-sign{background:none;border:1px solid var(--wine);color:var(--wine);border-radius:4px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer}
+  main{max-width:960px;margin:0 auto;padding:32px 16px 80px}
+  .hero{text-center;margin:40px 0 60px}
+  .hero .micro{display:block}
+  .hero h1{font-size:40px;line-height:1.15;color:var(--wine900);margin:10px 0 14px}
+  .hero p{font-size:18px;color:var(--muted);max-width:560px;margin:0 auto}
+  .cta{margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn-p{background:var(--wine);color:var(--card);border:none;border-radius:4px;padding:14px 24px;font-size:15px;font-weight:700;cursor:pointer}
+  .btn-s{background:var(--card);color:var(--wine);border:1px solid var(--line);border-radius:4px;padding:14px 24px;font-size:15px;font-weight:700;cursor:pointer}
+  .btn-s:hover{background:#F2E7DA}
+  .features{display:grid;grid-template-columns:1fr;gap:20px}
+  @media(min-width:720px){.features{grid-template-columns:repeat(3,1fr)}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px;text-align:center}
+  .card .ico{font-size:32px;margin-bottom:12px}
+  .card h3{font-size:19px;color:var(--wine900);margin:0 0 8px}
+  .card p{font-size:14px;color:var(--muted);margin:0}
+  footer{border-top:1px solid var(--line);padding:32px 16px;text-center}
+  footer .micro{letter-spacing:.2em}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a href="#" class="logo serif">Clother.</a>
+    <nav>
+      <a href="#">Services</a>
+      <a href="#">Portfolio</a>
+      <a href="#">Book a consultation</a>
+    </nav>
+    <button class="btn-sign">Sign in</button>
+  </div>
+</header>
+<main>
+  <section class="hero">
+    <span class="micro">Dej. by Ayodeji · Bespoke formalwear</span>
+    <h1 class="serif">Commissioned pieces, clearly managed.</h1>
+    <p>Dresses and suits, made for your occasion. Brief, consult, accept a quote, pay, and follow your project — all in one place.</p>
+    <div class="cta">
+      <button class="btn-p">Start a request</button>
+      <button class="btn-s">Browse services</button>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="card">
+      <div class="ico">📝</div>
+      <h3>Structured brief</h3>
+      <p>Garment, occasion, budget, deadline — everything the studio needs to quote accurately.</p>
+    </div>
+    <div class="card">
+      <div class="ico">💬</div>
+      <h3>Project chat</h3>
+      <p>Decisions live against the project, not lost in messaging apps.</p>
+    </div>
+    <div class="card">
+      <div class="ico">🧾</div>
+      <h3>Itemised quotes</h3>
+      <p>Scope, price, timeline and terms — accept explicitly before paying.</p>
+    </div>
+  </section>
+</main>
+<footer style="text-align:center">
+  <span class="micro">Clother · Bespoke design · Thoughtfully made</span>
+</footer>
+</body>
+</html>
